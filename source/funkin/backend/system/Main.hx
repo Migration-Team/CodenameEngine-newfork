@@ -75,7 +75,7 @@ class Main extends Sprite
 		if (VERSION.SDK_INT > 30)
 			Sys.setCwd(Path.addTrailingSlash(Context.getObbDir()));
 		else
-			Sys.setCwd(Path.addTrailingSlash(Context.getExternalFilesDir()));
+			Sys.setCwd(Path.addTrailingSlash(Context.getExternalFilesDir(null)));
 		#elseif ios
 		Sys.setCwd(System.documentsDirectory);
 		#end
