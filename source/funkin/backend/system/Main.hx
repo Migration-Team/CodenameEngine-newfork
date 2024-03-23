@@ -18,8 +18,11 @@ import flixel.math.FlxRect;
 import funkin.backend.system.modules.*;
 
 #if android
-import haxe.io.Path;
+import android.content.Context;
+import android.os.Build;
 #end
+
+import haxe.io.Path;
 
 #if ALLOW_MULTITHREADING
 import sys.thread.Thread;
@@ -68,8 +71,13 @@ class Main extends Sprite
 
 		CrashHandler.init();
 
-		#if mobile
-		Sys.setCwd(Path.addTrailingSlash(SUtil.getStorageDirectory()));
+		#if android
+		if (VERSION.SDK_INT > 30)
+			Sys.setCwd(Path.addTrailingSlash(Context.getObbDir()));
+		else
+			Sys.setCwd(Path.addTrailingSlash(Context.getExternalFilesDir()));
+		#elseif ios
+		Sys.setCwd(System.documentsDirectory);
 		#end
 		
 		addChild(game = new FunkinGame(gameWidth, gameHeight, MainState, Options.framerate, Options.framerate, skipSplash, startFullscreen));
