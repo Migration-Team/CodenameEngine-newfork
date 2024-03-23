@@ -17,6 +17,10 @@ import flixel.math.FlxPoint;
 import flixel.math.FlxRect;
 import funkin.backend.system.modules.*;
 
+#if android
+import haxe.io.Path;
+#end
+
 #if ALLOW_MULTITHREADING
 import sys.thread.Thread;
 #end
@@ -64,6 +68,10 @@ class Main extends Sprite
 
 		CrashHandler.init();
 
+		#if mobile
+		Sys.setCwd(Path.addTrailingSlash(SUtil.getStorageDirectory()));
+		#end
+		
 		addChild(game = new FunkinGame(gameWidth, gameHeight, MainState, Options.framerate, Options.framerate, skipSplash, startFullscreen));
 
 		addChild(framerateSprite = new funkin.backend.system.framerate.Framerate());
