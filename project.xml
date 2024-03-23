@@ -166,6 +166,7 @@
 
 	<haxelib name="hxvlc" if="VIDEO_CUTSCENES" />
 	<haxelib name="away3d" if="THREE_D_SUPPORT" />
+	<haxelib name="extension-androidtools" if="android" />
 	<haxelib name="format" />
 	<haxelib name="flxanimate" />
 
